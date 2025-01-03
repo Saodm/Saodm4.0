@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    {% for post in posts %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename='uploads/' + post.image_path) }}" class="card-img-top" alt="{{ post.title }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.description }}</p>
+                <p class="card-text"><small class="text-muted">作者: {{ post.author.username }}</small></p>
+                <a href="{{ url_for('post', post_id=post.id) }}" class="btn btn-secondary">查看详情</a>
+                <form action="{{ url_for('like', post_id=post.id) }}" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-primary">点赞</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

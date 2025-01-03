@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ user.username }}</h1>
+<p>邮箱: {{ user.email }}</p>
+
+<h2>发布的照片</h2>
+<ul>
+    {% for post in posts %}
+    <li><a href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

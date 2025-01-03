@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h1 class="display-4">欢迎来到平价摄影社区</h1>
+    <p class="lead">分享你的摄影作品，发现更多精彩内容。</p>
+    <hr class="my-4">
+    <p>点击下方按钮查看所有帖子。</p>
+    <a class="btn btn-primary btn-lg" href="{{ url_for('posts') }}" role="button">查看帖子</a>
+</div>
+{% endblock %}

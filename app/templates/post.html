@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+<p>{{ post.description }}</p>
+<img src="{{ url_for('static', filename='uploads/' + post.image_path) }}" alt="{{ post.title }}" class="img-fluid">
+
+{% if post.author == current_user %}
+<form action="{{ url_for('delete_post', post_id=post.id) }}" method="post" style="display:inline;">
+    <button type="submit" class="btn btn-danger">删除</button>
+</form>
+{% endif %}
+
+<h2>评论</h2>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.body.label(class="form-label") }}
+        {{ form.body(class="form-control") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+
+<ul>
+    {% for comment in comments %}
+    <li><strong>{{ comment.author.username }}</strong>: {{ comment.body }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
